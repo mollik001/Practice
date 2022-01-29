@@ -1,0 +1,164 @@
+package VaccinationSystem;
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Information {
+
+    String name;
+    int age;
+    String gender;
+    int nid;
+    String vaccine;
+    String hospital;
+
+
+     Scanner input = new Scanner(System.in);
+
+
+    static int np;
+
+    Information[] mursalin = new Information[100];
+
+    void Data(String name,int age,String gender,int nid) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.nid = nid;
+
+
+    }
+    void User_Info() {
+
+        System.out.println("Enter number of patient");
+        np = input.nextInt();
+        for (int i = 0; i < np; i++) {
+
+            System.out.println("Enter Name:");
+            String name = input.next();
+            System.out.println("Enter Age:");
+            int age = input.nextInt();
+            System.out.println("Enter Gender:");
+            String gender = input.next();
+            System.out.println("Enter NID:");
+            int nid = input.nextInt();
+            mursalin[i] = new Information();
+            mursalin[i].Data(name,age,gender,nid);
+        }
+
+
+    }
+
+    void search_Nid() {
+
+        System.out.println("Enter NID");
+        int search = input.nextInt();
+
+
+        for (int i = 0; i < np; i++) {
+            if (search == mursalin[i].nid) {
+                System.out.println("Patient name: "+mursalin[i].name);
+
+                if (mursalin[i].gender.equals("female")) {
+                    System.out.println("Are you pregnant? (yes/no): ");
+
+                    String prg = input.next();
+                    if (prg.equals("yes")) {
+                        System.out.println("YOU ARE NOT ELIGIBLE");
+                    } else {
+                        System.out.println("Enter Covid status (positive/negative: )");
+                        String covid = input.next();
+                        if (covid.equals("positive")) {
+                            System.out.println("YOU ARE NOT ELIGIBLE");
+
+                        } else {
+                            System.out.println("Select Vaccine from (Moderna, Pfizer, AstraZeneca):");
+                            String vacc = input.next();
+                            mursalin[i].vaccine = vacc;
+                            System.out.println("Select Hospital (Square, Popular, DMC): ");
+                            String hosp = input.next();
+                            mursalin[i].hospital = hosp;
+                            System.out.println("Registration is successful! ");
+
+                        }
+
+                    }
+
+                } else {
+                    System.out.println("Enter Covid status (positive/negative: )");
+                    String covid = input.next();
+                    if (covid.equals("positive")) {
+                        System.out.println("YOU ARE NOT ELIGIBLE");
+
+                    } else {
+                        System.out.println("Select Vaccine from (Moderna, Pfizer, AstraZeneca):");
+                        String v = input.next();
+                        mursalin[i].vaccine = v;
+                        System.out.println("Select Hospital (Square, Popular, DMC): ");
+                        String h = input.next();
+                        mursalin[i].hospital = h;
+                        System.out.println("Information stored");
+                    }
+                }
+
+            }
+
+        }
+
+
+    }
+
+    void Filewriting_and_consoleoutput() {
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\VaccinationData.txt"));
+
+            for (int i = 0; i < np; i++) {
+                if (mursalin[i].vaccine != null) {
+
+                    bw.write(mursalin[i].name + " " + mursalin[i].age + " " + mursalin[i].gender + " " + mursalin[i].nid + " " + mursalin[i].vaccine + " " + mursalin[i].hospital + "\n");
+
+                }
+
+            }
+            bw.flush();
+            bw.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            File myObj = new File("C:\\Users\\User\\Desktop\\VaccinationData.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+
+    void Filereading() {
+
+        try {
+            File myObj = new File("F:\\9 th semister material\\JAVA LAB FINAL\\file.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+}

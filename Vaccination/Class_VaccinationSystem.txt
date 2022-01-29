@@ -1,0 +1,51 @@
+package VaccinationSystem;
+
+import java.util.Scanner;
+
+public class VaccinationSystem {
+
+
+        public static void main(String[] args) throws Exception {
+            Information obj = new Information();
+            Scanner in = new Scanner(System.in);
+            int var;
+
+
+            do {
+                System.out.println("Select 1 to enter new patient information: ");
+                System.out.println("Select 2 to take Vaccination: ");
+                System.out.println("Select 3 to get Vaccination Information.");
+                System.out.println("Select 4 to see Vaccination Information.");
+                System.out.println("Select 5 to exit.");
+
+                var = in.nextInt();
+                if(var==1){
+                    obj.User_Info();
+                }
+                else if(var==2) {
+                    obj.search_Nid();
+                }
+
+                else if(var==3){
+                    obj.Filereading();
+                }
+                else if(var==4){
+                    obj.Filewriting_and_consoleoutput();
+
+                }
+                else if(var==5){
+                    System.out.println("Program finished");
+                    break;
+                }
+                else{
+                    System.out.println("Invalid input");
+                }
+
+
+            }
+            while (var <=5);
+
+
+        }
+
+    }
