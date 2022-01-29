@@ -1,0 +1,38 @@
+package Second_Class;
+//
+class Person{
+    String name;
+    String age;
+    public void priintInfo(){
+        System.out.println(this.name+ " "+ this.age);
+    }
+    //without paramiterized
+    Person(){
+        System.out.println("Constructor called");
+    }
+    //paramitarized constructor
+    Person(String name, String age){
+        this.name =name;
+        this.age = age;
+    }
+    //Copy constructor
+    Person(Person obj1){
+        this.name = obj1.name;
+        this.age = obj1.age;
+    }
+}
+
+
+public class OOP {
+    public static void main(String args[]) {
+        //System.out.println("Hellow world");
+
+        Person obj = new Person();
+
+        Person obj1 = new Person("jahid","18");
+        obj1.priintInfo();
+
+        Person obj2 = new Person(obj1);
+        obj2.priintInfo();
+    }
+}
