@@ -1,0 +1,61 @@
+package Help;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessTheNumber {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.out.println("Welcome to Random Land!");
+		System.out.println("What is your name?");
+		Scanner scanner=new Scanner(System.in);
+		String name=scanner.next();
+		System.out.println("Shall we begin "+name+" ?");
+		System.out.println("\t1.yes");
+		System.out.println("\t2.no");
+		int biginAns=scanner.nextInt();
+		while(biginAns!=1) {
+			System.out.println("\t1.yes");
+			System.out.println("\t2.no");
+			biginAns=scanner.nextInt();
+		}
+		System.out.println("Guess any number between 1 to 20");
+		
+		
+		Random random=new Random();
+		int x=random.nextInt(21);
+		
+		
+		int tryNum=0;
+		
+		while(tryNum<5) {
+			tryNum++;
+			int guess=scanner.nextInt();
+			if(tryNum<5) {
+			if(guess==x) {
+				System.out.println("Congratultions! You have won in "+tryNum+" try");
+				break;
+			}else if( guess>x) {
+				System.out.println("Try to guess lower");
+			}else if( guess<x) {
+				System.out.println("Try to guess higher");
+			}
+			}
+			else  {
+				if(guess==x) {
+					System.out.println("Congratultions! You have won in "+tryNum+" try");
+					break;
+				}
+				System.out.println("Game Over!");
+				
+				System.out.print("\nThe number was ");
+				System.out.print(".  ");
+				Thread.sleep(1000);
+				System.out.print(".  ");
+				Thread.sleep(1000);
+				System.out.println (".  ");
+				Thread.sleep(1000);
+				System.out.println(x);
+			}
+		}
+		
